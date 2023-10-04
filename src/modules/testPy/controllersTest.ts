@@ -11,7 +11,7 @@ export const testPy = async (req: Request, res: Response, next: NextFunction) =>
       throw new Error(` invalid request ${(error as Error).message}`)
     }
     const { _id: id } = value
-    const subprocess = spawnSync('python3', [path.join(__dirname, 'pyTest.py'), id])
+    const subprocess = spawnSync('python3', [path.join(__dirname, 'pyTest.py'), id], { cwd: __dirname })
 
     const result = subprocess.stdout?.toString()?.trim()
     const errors = subprocess.stderr?.toString()?.trim()
