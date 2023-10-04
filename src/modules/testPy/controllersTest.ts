@@ -15,7 +15,7 @@ export const testPy = async (req: Request, res: Response, next: NextFunction) =>
 
     const result = subprocess.stdout?.toString()?.trim()
     const errors = subprocess.stderr?.toString()?.trim()
-    if (errors) throw new Error(` invalid request`)
+    if (errors) throw new Error(` invalid request ${errors}`)
     res.json({
       status: 'succss',
       data: result,
