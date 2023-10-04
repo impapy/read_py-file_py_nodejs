@@ -15,11 +15,10 @@ export const testPy = async (req: Request, res: Response, next: NextFunction) =>
 
     const result = subprocess.stdout?.toString()?.trim()
     const errors = subprocess.stderr?.toString()?.trim()
-
-    console.log(result, errors)
+    if (errors) throw new Error(` invalid request`)
     res.json({
       status: 'succss',
-      data: 'test',
+      data: result,
       message: ' succss',
     })
   } catch (error) {
